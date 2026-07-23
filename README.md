@@ -157,6 +157,13 @@
                     <div class="card-title">Original Abeokuta Adire Silk</div>
                     <div class="card-price">₦18,000 / $15</div>
                     <button class="add-btn" onclick="addToCart('Abeokuta Adire Silk', 18000)">Add to Cart</button>
+
+                    <img src="5985828296635125071.jpg" alt="Jewelry Set">
+
+                    <video controls preload="metadata" width="100%" height="220" style="object-fit: cover;">
+    <source src="video5985828296175132600.mp4" type="video/mp4">
+    Your browser does not support video playback.
+</video>
                 </div>
             </div>
 
