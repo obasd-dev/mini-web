@@ -1,2 +1,291 @@
-# mini-web
-official clothes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ile-Oge Fabrics | Authentic Yoruba & Plain Materials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #fcfbf7; color: #2d2d2d; line-height: 1.6; padding-bottom: 80px; }
+
+        /* Navigation Header */
+        header {
+            background: #4a1525; /* Royal Burgundy */
+            color: #f3e5ab; /* Gold accent */
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        header h1 { font-size: 1.5rem; font-weight: 700; }
+
+        .cart-btn-header {
+            background: #d4af37;
+            color: #4a1525;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(74, 21, 37, 0.85), rgba(74, 21, 37, 0.85)), url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+        }
+        .hero h2 { font-size: 2.2rem; margin-bottom: 10px; color: #f3e5ab; }
+
+        /* Product Grid */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #eee;
+        }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 18px; text-align: center; }
+        .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+        .card-price { color: #8b0000; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
+
+        .add-btn {
+            width: 100%;
+            background: #4a1525;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .add-btn:hover { background: #6b2135; }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 100%; max-width: 420px; height: 100%;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-modal.active { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
+        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+        .cart-items { flex: 1; overflow-y: auto; margin: 20px 0; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+
+        /* Payment Section inside Cart */
+        .payment-box {
+            background: #fdfbf7;
+            border: 1px solid #e2d8c3;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        .payment-box h4 { color: #4a1525; margin-bottom: 5px; }
+
+        .checkout-btn {
+            background: #25D366; /* WhatsApp Green */
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none; z-index: 999;
+        }
+        .overlay.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ile-Oge Fabrics</h1>
+        <button class="cart-btn-header" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    </header>
+
+    <section class="hero">
+        <h2>Authentic Native Yoruba & Quality Plain Materials</h2>
+        <p>Aso-Oke, Adire, Swiss Lace, Guinea Brocade & Quality Plain Fabrics</p>
+    </section>
+
+    <main class="container">
+        <div class="grid">
+            <!-- Product 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80" alt="Aso-Oke">
+                <div class="card-body">
+                    <div class="card-title">Royal Handwoven Aso-Oke Set</div>
+                    <div class="card-price">₦45,000 / $35</div>
+                    <button class="add-btn" onclick="addToCart('Royal Handwoven Aso-Oke', 45000)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=500&q=80" alt="Adire Silk">
+                <div class="card-body">
+                    <div class="card-title">Original Abeokuta Adire Silk</div>
+                    <div class="card-price">₦18,000 / $15</div>
+                    <button class="add-btn" onclick="addToCart('Abeokuta Adire Silk', 18000)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Swiss Lace">
+                <div class="card-body">
+                    <div class="card-title">Swiss Voile Cotton Lace (5 Yds)</div>
+                    <div class="card-price">₦38,000 / $30</div>
+                    <button class="add-btn" onclick="addToCart('Swiss Voile Cotton Lace', 38000)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Plain Material">
+                <div class="card-body">
+                    <div class="card-title">Premium Plain Cashmere/Cotton</div>
+                    <div class="card-price">₦12,000 / $10</div>
+                    <button class="add-btn" onclick="addToCart('Premium Plain Cashmere', 12000)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Overlay & Cart Modal -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Your Order Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <p style="text-align:center; color:#888;">Your cart is empty.</p>
+        </div>
+
+        <div style="font-weight:700; font-size:1.1rem; margin-bottom:15px; display:flex; justify-content:space-between;">
+            <span>Total:</span>
+            <span id="cartTotal">₦0</span>
+        </div>
+
+        <!-- Payment Instructions Box -->
+        <div class="payment-box">
+            <h4>Payment Options:</h4>
+            <p><strong>🇳🇬 Bank Transfer (Naira):</strong><br>GTBank | 0123456789 | Ile-Oge Fabrics</p>
+            <hr style="margin: 6px 0; border: none; border-top: 1px solid #e2d8c3;">
+            <p><strong>🌎 Foreign Payments:</strong><br>Wise / WorldRemit / Sendwave to above GTBank details or via PayPal (ileoge@email.com)</p>
+        </div>
+
+        <button class="checkout-btn" onclick="checkoutWhatsApp()">Send Order via WhatsApp 💬</button>
+    </div>
+
+    <script>
+        let cart = [];
+        const phoneNum = "2348000000000"; // REPLACE WITH HER WHATSAPP NUMBER IN INTERNATIONAL FORMAT (e.g. 2348123456789)
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888;">Your cart is empty.</p>';
+                cartCount.innerText = '0';
+                cartTotal.innerText = '₦0';
+                return;
+            }
+
+            let total = 0;
+            let count = 0;
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>₦${item.price.toLocaleString()} x ${item.qty}</small>
+                        </div>
+                        <div>
+                            <strong>₦${(item.price * item.qty).toLocaleString()}</strong>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartCount.innerText = count;
+            cartTotal.innerText = '₦' + total.toLocaleString();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            let message = "Hello Ile-Oge Fabrics, I would like to place an order:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                message += `• ${item.name} (${item.qty}x) - ₦${(item.price * item.qty).toLocaleString()}\n`;
+                total += item.price * item.qty;
+            });
+
+            message += `\n*Total Amount:* ₦${total.toLocaleString()}\n\n`;
+            message += "I will be sending my payment confirmation receipt shortly.";
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNum}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
