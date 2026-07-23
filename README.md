@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ile-Oge Fabrics | Authentic Yoruba & Plain Materials</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #fcfbf7; color: #2d2d2d; line-height: 1.6; padding-bottom: 80px; }
@@ -212,7 +213,8 @@
 
     <script>
         let cart = [];
-        const phoneNum = "2348000000000"; // REPLACE WITH HER WHATSAPP NUMBER IN INTERNATIONAL FORMAT (e.g. 2348123456789)
+        // Updated WhatsApp Phone Number (International format without the '+' sign)
+        const phoneNum = "2347042798326"; 
 
         function toggleCart() {
             document.getElementById('cartModal').classList.toggle('active');
@@ -246,7 +248,7 @@
             let count = 0;
             cartItemsContainer.innerHTML = '';
 
-            cart.forEach((item, index) => {
+            cart.forEach((item) => {
                 total += item.price * item.qty;
                 count += item.qty;
                 cartItemsContainer.innerHTML += `
