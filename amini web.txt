@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +58,15 @@
             justify-content: space-between;
             border: 1px solid #eee;
         }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
+
+        /* Media display for cards */
+        .card img, .card video { 
+            width: 100%; 
+            height: 220px; 
+            object-fit: cover; 
+            background: #000;
+        }
+
         .card-body { padding: 18px; text-align: center; }
         .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
         .card-price { color: #8b0000; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
@@ -140,7 +148,8 @@
 
     <main class="container">
         <div class="grid">
-            <!-- Product 1 -->
+            
+            <!-- Product 1: Aso-Oke -->
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80" alt="Aso-Oke">
                 <div class="card-body">
@@ -150,24 +159,30 @@
                 </div>
             </div>
 
-            <!-- Product 2 -->
+            <!-- Product 2: Jewelry Set (Your Image File) -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=500&q=80" alt="Adire Silk">
+                <img src="5985828296635125071.jpg" alt="Jewelry Set">
                 <div class="card-body">
-                    <div class="card-title">Original Abeokuta Adire Silk</div>
+                    <div class="card-title">Luxury Fashion Jewelry Set</div>
                     <div class="card-price">₦18,000 / $15</div>
-                    <button class="add-btn" onclick="addToCart('Abeokuta Adire Silk', 18000)">Add to Cart</button>
-
-                    <img src="5985828296635125071.jpg" alt="Jewelry Set">
-
-                    <video controls preload="metadata" width="100%" height="220" style="object-fit: cover;">
-    <source src="video5985828296175132600.mp4" type="video/mp4">
-    Your browser does not support video playback.
-</video>
+                    <button class="add-btn" onclick="addToCart('Luxury Fashion Jewelry Set', 18000)">Add to Cart</button>
                 </div>
             </div>
 
-            <!-- Product 3 -->
+            <!-- Product 3: Video Showcase (Your Video File) -->
+            <div class="card">
+                <video controls preload="metadata">
+                    <source src="video5985828296175132600.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <div class="card-body">
+                    <div class="card-title">Special Material Video Feature</div>
+                    <div class="card-price">₦25,000 / $20</div>
+                    <button class="add-btn" onclick="addToCart('Special Material Video Feature', 25000)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4: Swiss Lace -->
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Swiss Lace">
                 <div class="card-body">
@@ -177,7 +192,7 @@
                 </div>
             </div>
 
-            <!-- Product 4 -->
+            <!-- Product 5: Plain Material -->
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Plain Material">
                 <div class="card-body">
@@ -186,6 +201,7 @@
                     <button class="add-btn" onclick="addToCart('Premium Plain Cashmere', 12000)">Add to Cart</button>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -220,7 +236,6 @@
 
     <script>
         let cart = [];
-        // Updated WhatsApp Phone Number (International format without the '+' sign)
         const phoneNum = "2347042798326"; 
 
         function toggleCart() {
