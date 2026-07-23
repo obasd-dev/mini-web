@@ -39,7 +39,7 @@
         .hero {
             text-align: center;
             padding: 50px 20px;
-            background: linear-gradient(rgba(74, 21, 37, 0.85), rgba(74, 21, 37, 0.85)), url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=80') center/cover;
+            background: linear-gradient(rgba(74, 21, 37, 0.85), rgba(74, 21, 37, 0.85)), url('aee.jpg') center/cover;
             color: white;
         }
         .hero h2 { font-size: 2.2rem; margin-bottom: 10px; color: #f3e5ab; }
@@ -59,7 +59,7 @@
             border: 1px solid #eee;
         }
 
-        /* Media display for cards */
+        /* Media styling for card photos & videos */
         .card img, .card video { 
             width: 100%; 
             height: 220px; 
@@ -149,19 +149,19 @@
     <main class="container">
         <div class="grid">
             
-            <!-- Product 1: Aso-Oke -->
+            <!-- Product 1: aee.jpg -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80" alt="Aso-Oke">
+                <img src="aee.jpg" alt="Aso-Oke Material">
                 <div class="card-body">
                     <div class="card-title">Royal Handwoven Aso-Oke Set</div>
                     <div class="card-price">₦45,000 / $35</div>
-                    <button class="add-btn" onclick="addToCart('Royal Handwoven Aso-Oke', 45000)">Add to Cart</button>
+                    <button class="add-btn" onclick="addToCart('Royal Handwoven Aso-Oke Set', 45000)">Add to Cart</button>
                 </div>
             </div>
 
-            <!-- Product 2: Jewelry Set (Your Image File) -->
+            <!-- Product 2: Jewelry Image -->
             <div class="card">
-                <img src="5985828296635125071.jpg" alt="Jewelry Set">
+                <img src="5985828296635125071.jpg" alt="Luxury Jewelry Set">
                 <div class="card-body">
                     <div class="card-title">Luxury Fashion Jewelry Set</div>
                     <div class="card-price">₦18,000 / $15</div>
@@ -169,7 +169,7 @@
                 </div>
             </div>
 
-            <!-- Product 3: Video Showcase (Your Video File) -->
+            <!-- Product 3: Video File -->
             <div class="card">
                 <video controls preload="metadata">
                     <source src="video5985828296175132600.mp4" type="video/mp4">
@@ -182,9 +182,9 @@
                 </div>
             </div>
 
-            <!-- Product 4: Swiss Lace -->
+            <!-- Product 4: aqq.jpg -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Swiss Lace">
+                <img src="aqq.jpg" alt="Quality Lace Material">
                 <div class="card-body">
                     <div class="card-title">Swiss Voile Cotton Lace (5 Yds)</div>
                     <div class="card-price">₦38,000 / $30</div>
@@ -192,9 +192,9 @@
                 </div>
             </div>
 
-            <!-- Product 5: Plain Material -->
+            <!-- Product 5: aww.jpg -->
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Plain Material">
+                <img src="aww.jpg" alt="Premium Plain Material">
                 <div class="card-body">
                     <div class="card-title">Premium Plain Cashmere/Cotton</div>
                     <div class="card-price">₦12,000 / $10</div>
@@ -236,7 +236,8 @@
 
     <script>
         let cart = [];
-        const phoneNum = "2347042798326"; 
+        // Updated WhatsApp Phone Number
+        const phoneNum = "2348134097234"; 
 
         function toggleCart() {
             document.getElementById('cartModal').classList.toggle('active');
